@@ -27,3 +27,9 @@ Usuario encargado de gestionar productos, pedidos e inventario.
 8. Gestionar productos
 9. Actualizar inventario
 10. Cambiar estado de pedidos
+
+---
+
+# Diagrama de Casos de Uso
+
+![Diagrama Casos de Uso](diagrama-casos-uso-sprint1.png)
