@@ -66,3 +66,9 @@ Atributos:
 - Un producto pertenece a una categoría.
 - Un carrito pertenece a un usuario.
 - Un pedido contiene detalles de pedido.
+
+---
+
+# Diagrama de Clases
+
+![Diagrama de Clases](diagrama-clases-sprint1.png)
