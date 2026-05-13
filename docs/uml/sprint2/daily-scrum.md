@@ -2,48 +2,58 @@
 
 ---
 
-## Daily Scrum 1
+# Daily Scrum 1
 
-### Avances
-- Se inició el modelado UML Sprint 2.
-- Se definió el flujo de compra del ecommerce.
-- Se organizó documentación del sprint.
+## Avances
+- Backend inició implementación de carrito y pedidos.
+- Frontend avanzó en carrito visual y gestión de productos.
+- UX/UI desarrolló diseño de checkout y dashboard admin.
+- QA inició pruebas de carrito y validaciones básicas.
+- UML comenzó diagramas de secuencia y actividades.
 
-### Problemas encontrados
-- Ajustes iniciales en diagramas de secuencia.
+## Problemas encontrados
+- Ajustes iniciales en el flujo de compra.
+- Organización de relaciones entre frontend y backend.
 
-### Próximos pasos
-- Completar diagramas de actividades.
-- Integrar imágenes UML en markdown.
+## Próximos pasos
+- Finalizar flujo de carrito y pedidos.
+- Completar diagramas UML del Sprint 2.
+- Continuar pruebas funcionales.
 
 ---
 
-## Daily Scrum 2
+# Daily Scrum 2
 
-### Avances
+## Avances
+- Se implementó el flujo principal de compra.
+- QA realizó validaciones de roles y pedidos.
 - Se desarrolló el diagrama de secuencia.
-- Se desarrolló el diagrama de actividades.
-- Se integró documentación visual al repositorio.
+- Se integraron imágenes UML al repositorio.
+- Se organizaron evidencias Scrum del sprint.
 
-### Problemas encontrados
-- Organización de relaciones y flujo visual UML.
+## Problemas encontrados
+- Correcciones menores en diagramas UML.
+- Ajustes visuales en documentación markdown.
 
-### Próximos pasos
-- Validar documentación Sprint 2.
-- Preparar Sprint 3.
+## Próximos pasos
+- Completar diagrama de actividades.
+- Revisar documentación Sprint 2.
+- Consolidar retrospectiva.
 
 ---
 
-## Daily Scrum 3
+# Daily Scrum 3
 
-### Avances
+## Avances
 - Se completó la documentación UML Sprint 2.
-- Se actualizaron diagramas y markdowns.
-- Se mantuvo organizada la estructura GitHub.
+- Frontend y backend avanzaron integración funcional.
+- QA validó funcionalidades principales del ecommerce.
+- Se actualizó la documentación Scrum y retrospectiva.
 
-### Problemas encontrados
-- Correcciones menores de estructura visual.
+## Problemas encontrados
+- Ajustes menores en organización visual y evidencias.
 
-### Próximos pasos
-- Iniciar manual técnico y manual de usuario.
-- Preparar cierre del proyecto.
+## Próximos pasos
+- Iniciar Sprint 3.
+- Preparar manual técnico y manual usuario.
+- Consolidar documentación final.
