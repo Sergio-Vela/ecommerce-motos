@@ -14,3 +14,9 @@
 8. Sistema actualiza inventario.
 9. Sistema muestra confirmación.
 10. Fin del proceso.
+
+---
+
+# Diagrama de Actividades
+
+![Diagrama de Actividades](diagrama-actividades-sprint2.png)
