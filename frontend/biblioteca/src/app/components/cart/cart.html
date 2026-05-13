@@ -44,6 +44,11 @@
           <strong>{{ cart.total | currency:'USD':'symbol':'1.0-0' }}</strong>
         </div>
       </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="confirmOrder()" [disabled]="loading || cart.items.length === 0">
+          Confirmar pedido
+        </button>
+      </mat-card-actions>
     </mat-card>
   </div>
 

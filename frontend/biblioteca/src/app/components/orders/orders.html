@@ -34,18 +34,23 @@
     <mat-card class="summary-card">
       <mat-card-title>Resumen del pedido</mat-card-title>
       <mat-card-content>
-        <div class="summary-row">
-          <span>Productos totales</span>
-          <span>{{ totalProductos }}</span>
+        <div *ngIf="loading" class="loading-state">
+          <mat-spinner diameter="40"></mat-spinner>
         </div>
-        <div class="summary-row total">
-          <span>Total del pedido</span>
-          <strong>{{ pedido.total | currency:'USD':'symbol':'1.0-0' }}</strong>
+        <div *ngIf="error && !loading" class="error-state">
+          {{ error }}
+        </div>
+        <div *ngIf="!loading && !error">
+          <div class="summary-row">
+            <span>Productos totales</span>
+            <span>{{ totalProductos }}</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total del pedido</span>
+            <strong>{{ pedido.total | currency:'USD':'symbol':'1.0-0' }}</strong>
+          </div>
         </div>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="primary">Confirmar pedido</button>
-      </mat-card-actions>
     </mat-card>
   </section>
 </div>

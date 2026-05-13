@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Router } from '@angular/router';
 import { CartService } from '../../services/cart-service';
+import { OrderService } from '../../services/order-service';
 import { CarritoDto } from '../../interfaces/carrito-dto';
 
 @Component({
@@ -19,6 +21,8 @@ export class Cart implements AfterViewInit {
 
   constructor(
     private cartService: CartService,
+    private orderService: OrderService,
+    private router: Router,
     private cd: ChangeDetectorRef
   ) {}
 
@@ -53,6 +57,31 @@ export class Cart implements AfterViewInit {
       error: (err) => {
         console.error('Error eliminando item', err);
         this.error = 'No se pudo eliminar el producto.';
+        this.loading = false;
+      }
+    });
+  }
+
+  confirmOrder(): void {
+    if (this.cart.items.length === 0) {
+      return;
+    }
+
+    this.loading = true;
+    this.error = '';
+
+    this.orderService.checkoutCart().subscribe({
+      next: (pedido) => {
+        this.loading = false;
+        if (pedido && pedido.id) {
+          this.router.navigate(['/orders', pedido.id]);
+        } else {
+          this.error = 'No se pudo procesar el pedido. Intenta nuevamente.';
+        }
+      },
+      error: (err) => {
+        console.error('Error confirmando pedido', err);
+        this.error = 'No se pudo procesar el pedido. Intenta nuevamente.';
         this.loading = false;
       }
     });

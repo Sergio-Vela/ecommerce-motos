@@ -1,4 +1,5 @@
 import { Pedido } from "../models/pedidoModel";
+import { DetallePedido } from "../models/detallePedidoModel";
 import type { PedidoService } from "../../domain/services/pedidoService";
 import type { PedidoCreateData, PedidoUpdateData } from "../../application/dtos/pedidoDto";
 
@@ -9,13 +10,20 @@ export class PedidoServiceImpl implements PedidoService {
 
     async getPedidos(): Promise<Pedido[]> {
         return await Pedido.findAll({
-            include: ['usuario', 'estado', 'detalles']
+            include: ['usuario', 'estado', { model: DetallePedido, as: 'detalles', include: ['producto'] }]
+        });
+    }
+
+    async getLatestPedido(): Promise<Pedido | null> {
+        return await Pedido.findOne({
+            order: [['fecha_pedido', 'DESC']],
+            include: ['usuario', 'estado', { model: DetallePedido, as: 'detalles', include: ['producto'] }]
         });
     }
 
     async getPedidoById(id: number): Promise<Pedido | null> {
         return await Pedido.findByPk(id, {
-            include: ['usuario', 'estado', 'detalles']
+            include: ['usuario', 'estado', { model: DetallePedido, as: 'detalles', include: ['producto'] }]
         });
     }
 

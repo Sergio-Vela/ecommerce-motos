@@ -1,38 +1,51 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-
-interface AdminMetrics {
-  productos: number;
-  pedidos: number;
-  usuarios: number;
-}
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { DashboardService, DashboardMetrics } from '../../services/dashboard-service';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatIconModule],
+  imports: [CommonModule, MatCardModule, MatIconModule, MatProgressSpinnerModule],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })
 export class Dashboard implements OnInit {
-  totals: AdminMetrics = {
+  totals: DashboardMetrics = {
     productos: 0,
     pedidos: 0,
     usuarios: 0,
   };
+  loading = true;
+  error = '';
+
+  constructor(
+    private dashboardService: DashboardService,
+    private cd: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
-    this.loadMetrics();
+    Promise.resolve().then(() => this.loadMetrics());
   }
 
   private loadMetrics(): void {
-    // Reemplazar con llamadas a servicios reales cuando estén disponibles.
-    this.totals = {
-      productos: 128,
-      pedidos: 84,
-      usuarios: 2150,
-    };
+    this.loading = true;
+    this.error = '';
+
+    this.dashboardService.getDashboardMetrics().subscribe({
+      next: (metrics) => {
+        this.totals = metrics;
+        this.loading = false;
+        this.cd.markForCheck();
+      },
+      error: (err) => {
+        console.error('Error cargando métricas del dashboard', err);
+        this.error = 'No se pudo cargar los datos del dashboard. Intenta de nuevo.';
+        this.loading = false;
+        this.cd.markForCheck();
+      },
+    });
   }
 }

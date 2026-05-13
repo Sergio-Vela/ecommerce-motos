@@ -11,7 +11,16 @@
     </div>
   </section>
 
-  <section class="metrics-grid">
+  <div class="dashboard-status" *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate" diameter="56"></mat-progress-spinner>
+    <span>Cargando métricas...</span>
+  </div>
+
+  <div class="dashboard-status error" *ngIf="!loading && error">
+    <span>{{ error }}</span>
+  </div>
+
+  <section class="metrics-grid" *ngIf="!loading && !error">
     <mat-card class="metric-card card-products">
       <div class="card-header">
         <div>
