@@ -1,0 +1,48 @@
+<div class="admin-dashboard">
+  <section class="hero-panel">
+    <div class="hero-copy">
+      <span class="eyebrow">Administrador</span>
+      <h1>Resumen del ecommerce</h1>
+      <p>Controla el inventario, pedidos y usuarios desde un panel moderno con estilo motociclista.</p>
+    </div>
+    <div class="hero-badge">
+      <p>Dark mode</p>
+      <span>Shop Moto</span>
+    </div>
+  </section>
+
+  <section class="metrics-grid">
+    <mat-card class="metric-card card-products">
+      <div class="card-header">
+        <div>
+          <p>Total productos</p>
+          <h2>{{ totals.productos }}</h2>
+        </div>
+        <mat-icon>inventory_2</mat-icon>
+      </div>
+      <p class="card-note">Cantidad de referencias disponibles en catálogo.</p>
+    </mat-card>
+
+    <mat-card class="metric-card card-orders">
+      <div class="card-header">
+        <div>
+          <p>Total pedidos</p>
+          <h2>{{ totals.pedidos }}</h2>
+        </div>
+        <mat-icon>receipt_long</mat-icon>
+      </div>
+      <p class="card-note">Pedidos procesados o en cola de envío.</p>
+    </mat-card>
+
+    <mat-card class="metric-card card-users">
+      <div class="card-header">
+        <div>
+          <p>Total usuarios</p>
+          <h2>{{ totals.usuarios }}</h2>
+        </div>
+        <mat-icon>people</mat-icon>
+      </div>
+      <p class="card-note">Clientes registrados y potenciales compradores.</p>
+    </mat-card>
+  </section>
+</div>

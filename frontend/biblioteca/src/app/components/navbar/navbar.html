@@ -10,12 +10,24 @@
     Catálogo
   </button>
 
-  <button mat-button routerLink="/login">
-    Login
+  <button mat-button routerLink="/carrito">
+    Carrito
   </button>
 
-  <button mat-button routerLink="/register">
-    Register
-  </button>
+  <ng-container *ngIf="authService.isLoggedIn(); else guestLinks">
+    <button mat-button (click)="logout()">
+      Logout
+    </button>
+  </ng-container>
+
+  <ng-template #guestLinks>
+    <button mat-button routerLink="/login">
+      Login
+    </button>
+
+    <button mat-button routerLink="/register">
+      Register
+    </button>
+  </ng-template>
 
 </mat-toolbar>

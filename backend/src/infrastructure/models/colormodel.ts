@@ -1,8 +1,16 @@
-import { DataTypes, Model } from "sequelize";
+import { DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOptional } from "sequelize";
 import { sequelize } from "../database/sequelize";
 
-export class Color extends Model {
-    public id!: number;
+interface ColorAttributes {
+    id: CreationOptional<number>;
+    nombre: string;
+    descripcion: string;
+}
+
+interface ColorCreationAttributes extends Omit<ColorAttributes, 'id'> {}
+
+export class Color extends Model<ColorAttributes, ColorCreationAttributes> {
+    public id!: CreationOptional<number>;
     public nombre!: string;
     public descripcion!: string;
 }

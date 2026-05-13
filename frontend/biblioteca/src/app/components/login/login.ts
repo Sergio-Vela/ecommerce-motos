@@ -3,8 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { UsuarioDto } from '../../interfaces/usuario-dto';
-import { UsuarioService } from '../../services/usuario-service';
+import { Router } from '@angular/router';
+import { AuthService } from '../../app/services/auth';
 
 @Component({
   selector: 'app-login',
@@ -20,47 +20,22 @@ import { UsuarioService } from '../../services/usuario-service';
 export class Login {
   correo = '';
   password = '';
+
   constructor(
-    private usuarioService: UsuarioService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   login() {
-
-    this.usuarioService.getUsuarios()
+    this.authService.login(this.correo, this.password)
       .subscribe({
-
-        next: (usuarios: UsuarioDto[]) => {
-
-          const usuario = usuarios.find(u =>
-            u.correo === this.correo &&
-            u.password === this.password
-          );
-
-          if (usuario) {
-
-            alert('Login correcto');
-
-            console.log(usuario);
-
-            localStorage.setItem(
-              'usuario',
-              JSON.stringify(usuario)
-            );
-
-          } else {
-
-            alert('Correo o password incorrecto');
-
-          }
-
+        next: () => {
+          alert('Login correcto');
+          this.router.navigate(['/']);
         },
-
-        error: (err) => {
-          console.log(err);
+        error: () => {
+          alert('Correo o password incorrecto');
         }
-
       });
-
   }
-
 }

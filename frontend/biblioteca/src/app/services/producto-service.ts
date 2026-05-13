@@ -7,11 +7,11 @@ import { ProductoDto } from '../interfaces/producto-dto';
   providedIn: 'root',
 })
 export class ProductoService {
-  private apiUrl = 'http://localhost:3000/api/productos';
+  private apiUrl = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient) { }
 
   getProductos(): Observable<ProductoDto[]> {
-    return this.http.get<ProductoDto[]>(this.apiUrl);
+    return this.http.get<ProductoDto[]>(`${this.apiUrl}/productos`);
   }
 }

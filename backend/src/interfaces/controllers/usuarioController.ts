@@ -1,15 +1,22 @@
 import { Request, Response } from "express";
+import { Usuario } from "../../infrastructure/models/usuario";
 import { UsuarioServiceImpl } from "../../infrastructure/services/usuarioServiceImpl";
 import { UsuarioCreateData, UsuarioUpdateData } from "../../application/dtos/usuarioDto";
 
 const usuarioService = new UsuarioServiceImpl();
 
 export class UsuarioController {
+    private sanitizeUsuario(usuario: Usuario) {
+        const usuarioJson = usuario.toJSON() as any;
+        delete usuarioJson.password;
+        return usuarioJson;
+    }
+
     async createUsuario(req: Request, res: Response) {
         const data: UsuarioCreateData = req.body;
         try {
             const usuario = await usuarioService.createUsuario(data);
-            res.status(201).json(usuario);
+            res.status(201).json(this.sanitizeUsuario(usuario));
         } catch (error) {
             console.error("Error creating usuario: ", error);
             res.status(500).json({ error: "Failed to create usuario" });
@@ -19,7 +26,8 @@ export class UsuarioController {
     async getUsuarios(req: Request, res: Response) {
         try {
             const usuarios = await usuarioService.getUsuarios();
-            res.status(200).json(usuarios);
+            const sanitized = usuarios.map(usuario => this.sanitizeUsuario(usuario));
+            res.status(200).json(sanitized);
         } catch (error) {
             console.error("Error fetching usuarios: ", error);
             res.status(500).json({ error: "Failed to fetch usuarios" });
@@ -33,7 +41,7 @@ export class UsuarioController {
             if (!usuario) {
                 res.status(404).json({ error: "Usuario not found" });
             } else {
-                res.status(200).json(usuario);
+                res.status(200).json(this.sanitizeUsuario(usuario));
             }
         } catch (error) {
             console.error("Error fetching usuario: ", error);
@@ -49,7 +57,7 @@ export class UsuarioController {
             if (!usuario) {
                 res.status(404).json({ error: "Usuario not found" });
             } else {
-                res.status(200).json(usuario);
+                res.status(200).json(this.sanitizeUsuario(usuario));
             }
         } catch (error) {
             console.error("Error updating usuario: ", error);
