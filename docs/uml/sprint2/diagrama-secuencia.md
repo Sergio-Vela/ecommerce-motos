@@ -22,3 +22,9 @@
 8. Sistema registra pedido.
 9. Sistema guarda información en base de datos.
 10. Sistema muestra confirmación de compra.
+
+---
+
+# Diagrama de Secuencia
+
+![Diagrama de Secuencia](diagrama-secuencia-sprint2.png)
