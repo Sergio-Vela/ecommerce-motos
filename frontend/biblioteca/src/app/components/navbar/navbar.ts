@@ -3,7 +3,8 @@ import { Router, RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { AuthService } from '../../app/services/auth';
+import { MatIconModule } from '@angular/material/icon';
+import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,8 @@ import { AuthService } from '../../app/services/auth';
     RouterLink,
     NgIf,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
@@ -27,3 +29,4 @@ export class Navbar {
     this.router.navigate(['/login']);
   }
 }
+
