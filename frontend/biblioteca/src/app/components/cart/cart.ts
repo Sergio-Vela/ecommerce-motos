@@ -18,6 +18,7 @@ export class Cart implements AfterViewInit {
   cart: CarritoDto = { items: [], total: 0 };
   loading = false;
   error = '';
+  public monedaLocal: string = 'GTQ';
 
   constructor(
     private cartService: CartService,

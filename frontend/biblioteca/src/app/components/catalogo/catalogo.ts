@@ -17,6 +17,7 @@ import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 })
 export class Catalogo implements AfterViewInit {
   productos: ProductoDto[] = [];
+  public monedaLocal: string = 'GTQ';
 
   constructor(
     private productoService: ProductoService,

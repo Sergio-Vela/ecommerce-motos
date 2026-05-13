@@ -22,9 +22,9 @@
         </div>
         <mat-card-content>
           <h2>{{ item.producto.nombre }}</h2>
-          <p class="cart-line"><span>Precio:</span> {{ item.producto.precio | currency:'USD':'symbol':'1.0-0' }}</p>
+          <p class="cart-line"><span>Precio:</span> {{ item.producto.precio | currency: monedaLocal:'symbol':'1.0-0' }}</p>
           <p class="cart-line"><span>Cantidad:</span> {{ item.cantidad }}</p>
-          <p class="cart-line subtotal"><span>Subtotal:</span> {{ item.subtotal | currency:'USD':'symbol':'1.0-0' }}</p>
+          <p class="cart-line subtotal"><span>Subtotal:</span> {{ item.subtotal | currency: monedaLocal:'symbol':'1.0-0' }}</p>
         </mat-card-content>
         <mat-card-actions>
           <button mat-raised-button color="warn" (click)="removeItem(item.id)">Eliminar</button>
@@ -41,7 +41,7 @@
         </div>
         <div class="summary-row">
           <span>Total general</span>
-          <strong>{{ cart.total | currency:'USD':'symbol':'1.0-0' }}</strong>
+          <strong>{{ cart.total | currency: monedaLocal:'symbol':'1.0-0' }}</strong>
         </div>
       </mat-card-content>
       <mat-card-actions>
