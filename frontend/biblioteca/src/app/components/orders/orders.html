@@ -1,0 +1,51 @@
+<div class="order-detail">
+  <section class="hero-panel">
+    <div class="hero-copy">
+      <span class="eyebrow">Pedido #{{ pedido.id }}</span>
+      <h1>Detalle del pedido</h1>
+      <p>Revisa los productos, cantidades y totales de tu pedido.</p>
+    </div>
+    <div class="hero-badge">
+      <p>{{ pedido.fecha }}</p>
+      <span>{{ pedido.estado }}</span>
+    </div>
+  </section>
+
+  <section class="products-section">
+    <h2>Productos en el pedido</h2>
+    <div class="products-grid">
+      <mat-card class="product-card" *ngFor="let producto of pedido.productos">
+        <div class="card-image">
+          <img [src]="producto.imagenUrl" [alt]="producto.nombre" />
+        </div>
+        <mat-card-content>
+          <h3>{{ producto.nombre }}</h3>
+          <div class="product-details">
+            <p class="detail-line"><span>Precio unitario:</span> {{ producto.precio | currency:'USD':'symbol':'1.0-0' }}</p>
+            <p class="detail-line"><span>Cantidad:</span> {{ producto.cantidad }}</p>
+            <p class="detail-line subtotal"><span>Subtotal:</span> {{ producto.subtotal | currency:'USD':'symbol':'1.0-0' }}</p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </section>
+
+  <section class="summary-section">
+    <mat-card class="summary-card">
+      <mat-card-title>Resumen del pedido</mat-card-title>
+      <mat-card-content>
+        <div class="summary-row">
+          <span>Productos totales</span>
+          <span>{{ totalProductos }}</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total del pedido</span>
+          <strong>{{ pedido.total | currency:'USD':'symbol':'1.0-0' }}</strong>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary">Confirmar pedido</button>
+      </mat-card-actions>
+    </mat-card>
+  </section>
+</div>

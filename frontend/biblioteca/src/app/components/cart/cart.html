@@ -1,0 +1,53 @@
+<div class="cart-root">
+  <div class="header-row">
+    <div>
+      <h1>Mi carrito</h1>
+      <p class="subtitle">Revisa tus productos, subtotal y total general.</p>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading-state">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+
+  <div *ngIf="error && !loading" class="error-state">
+    {{ error }}
+  </div>
+
+  <div *ngIf="!loading && cart.items.length > 0" class="cart-content">
+    <div class="cart-grid">
+      <mat-card class="cart-card" *ngFor="let item of cart.items; trackBy: trackByItem">
+        <div class="card-image">
+          <img [src]="item.producto.imagenUrl" [alt]="item.producto.nombre" />
+        </div>
+        <mat-card-content>
+          <h2>{{ item.producto.nombre }}</h2>
+          <p class="cart-line"><span>Precio:</span> {{ item.producto.precio | currency:'USD':'symbol':'1.0-0' }}</p>
+          <p class="cart-line"><span>Cantidad:</span> {{ item.cantidad }}</p>
+          <p class="cart-line subtotal"><span>Subtotal:</span> {{ item.subtotal | currency:'USD':'symbol':'1.0-0' }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="warn" (click)="removeItem(item.id)">Eliminar</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <mat-card class="summary-card">
+      <mat-card-title>Resumen del pedido</mat-card-title>
+      <mat-card-content>
+        <div class="summary-row">
+          <span>Productos</span>
+          <span>{{ totalItems }}</span>
+        </div>
+        <div class="summary-row">
+          <span>Total general</span>
+          <strong>{{ cart.total | currency:'USD':'symbol':'1.0-0' }}</strong>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div *ngIf="!loading && cart.items.length === 0" class="empty-state">
+    <p>Tu carrito está vacío.</p>
+  </div>
+</div>

@@ -3,10 +3,37 @@ import { Routes } from '@angular/router';
 import { Login } from './components/login/login'; 
 import { Register } from './components/register/register';
 import { Catalogo } from './components/catalogo/catalogo';
+import { Cart } from './components/cart/cart';
+import { Dashboard } from './components/dashboard/dashboard';
+import { Orders } from './components/orders/orders';
 
 export const routes: Routes = [
-    { path: 'login', component: Login },
-    { path: 'register', component: Register },
-    { path: 'catalogo', component: Catalogo },
-    { path: '', redirectTo: 'login', pathMatch: 'full' }
+
+  {
+    path: '',
+    component: Catalogo
+  },
+
+  {
+    path: 'login',
+    component: Login
+  },
+
+  {
+    path: 'register',
+    component: Register
+  },
+  {
+    path: 'carrito',
+    component: Cart
+  },
+  {
+    path: 'dashboard',
+    component: Dashboard
+  },
+  {
+    path: 'orders',
+    component: Orders
+  }
+
 ];
